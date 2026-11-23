@@ -49,8 +49,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .hero{position:relative;background:var(--deep);color:#fff;overflow:hidden;min-height:min(86svh,760px);display:grid;align-items:center}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,26,31,.96) 0%,rgba(10,26,31,.75) 42%,rgba(10,26,31,0) 75%);pointer-events:none}
-.hero .wrap{position:relative;z-index:1;width:100%;padding-block:64px}
-.hero h1{font-size:clamp(46px,7.5vw,92px);line-height:1;margin-bottom:18px}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:64px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.portrait{justify-self:end;width:min(100%,340px);aspect-ratio:4/5;border-radius:22px;overflow:hidden;border:1px solid rgba(127,214,230,.35);box-shadow:0 0 0 8px rgba(127,214,230,.06),0 30px 60px rgba(0,0,0,.45);background:var(--deep2)}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+.grad{border-radius:18px;overflow:hidden;margin:0 0 28px;border:1px solid var(--rule)}
+.grad img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 30%;display:block}
+.grad figcaption{font-size:14px;color:var(--mute);padding:10px 14px;background:var(--card)}
+.hero h1{font-size:clamp(44px,6.4vw,84px);line-height:1;margin-bottom:18px}
 .hero h1 span{display:block;font-size:.42em;font-weight:500;color:var(--cyan);letter-spacing:0;margin-top:12px}
 .hero .lead{font-size:clamp(18px,1.9vw,21px);color:#cfe0e5;max-width:31em;margin-bottom:28px}
 .cta{display:flex;flex-wrap:wrap;gap:10px}
@@ -184,8 +189,8 @@ footer{background:var(--deep);color:#9fb7be;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;padding-block:26px}
 footer a{color:#cfe0e5}
 
-@media(max-width:900px){.els,.proj,.proj.ms,.kit,.beyond,.cols3{grid-template-columns:minmax(0,1fr)}.grid2,.ai{grid-template-columns:minmax(0,1fr)}.award.top{grid-column:auto}.el{min-height:0}}
-@media(max-width:640px){.bar .wrap{flex-wrap:wrap;gap:0;padding-top:8px}.logo{width:100%;margin-bottom:2px}.tabs{width:100%}.tabs a{padding:8px 10px;font-size:14px}.hero::after{background:linear-gradient(180deg,rgba(10,26,31,.55),rgba(10,26,31,.92) 70%)}.hero{align-items:end}.legend{display:none}.strip .wrap>div{padding-left:0;border-left:0;border-top:1px solid rgba(127,214,230,.15)}.yr{grid-template-columns:minmax(0,1fr);gap:4px}.yr>h2{position:static;font-size:34px}.news li{grid-template-columns:minmax(0,1fr);gap:2px}.tools input{margin-left:0;max-width:none}}
+@media(max-width:900px){.portrait{width:min(100%,260px)}.els,.proj,.proj.ms,.kit,.beyond,.cols3{grid-template-columns:minmax(0,1fr)}.grid2,.ai{grid-template-columns:minmax(0,1fr)}.award.top{grid-column:auto}.el{min-height:0}}
+@media(max-width:640px){.bar .wrap{flex-wrap:wrap;gap:0;padding-top:8px}.logo{width:100%;margin-bottom:2px}.tabs{width:100%}.tabs a{padding:8px 10px;font-size:14px}.hero::after{background:linear-gradient(180deg,rgba(10,26,31,.55),rgba(10,26,31,.92) 70%)}.hero{align-items:end}.hero .wrap{grid-template-columns:minmax(0,1fr)}.portrait{order:-1;justify-self:start;width:120px;aspect-ratio:1;border-radius:50%}.legend{display:none}.strip .wrap>div{padding-left:0;border-left:0;border-top:1px solid rgba(127,214,230,.15)}.yr{grid-template-columns:minmax(0,1fr);gap:4px}.yr>h2{position:static;font-size:34px}.news li{grid-template-columns:minmax(0,1fr);gap:2px}.tools input{margin-left:0;max-width:none}}
 @media(prefers-reduced-motion:reduce){.view.on{animation:none}.go a{transition:none}}
 </style>
 </head>
@@ -211,6 +216,7 @@ footer a{color:#cfe0e5}
   <div class="hero">
     <canvas id="sky" aria-hidden="true"></canvas>
     <div class="wrap">
+      <div>
       <h1>Sajal Islam, Ph.D.<span>Radiation effects in wide-bandgap power devices</span></h1>
       <p class="lead">Postdoctoral Fellow at the Center for Reliable &amp; Trusted Electronics, Indiana University. I study how a single heavy ion can destroy a high-voltage SiC, GaN or β-Ga₂O₃ device, and how to design devices that survive in space.</p>
       <div class="cta">
@@ -218,6 +224,8 @@ footer a{color:#cfe0e5}
         <a class="btn" href="#publications">Publications</a>
         <a class="btn" href="mailto:sajislam@iu.edu">sajislam@iu.edu</a>
       </div>
+      </div>
+      <div class="portrait"><img src="images/headshot.jpg" alt="Portrait of Sajal Islam" width="720" height="1080"></div>
     </div>
     <div class="legend"><span><b style="background:var(--ion)"></b>Heavy ion</span><span><b style="background:var(--cyan)"></b>Electrons</span><span><b style="background:#ffc2d4"></b>Holes</span></div>
   </div>
@@ -381,6 +389,7 @@ footer a{color:#cfe0e5}
         </ul>
       </div>
       <div>
+        <figure class="grad"><img src="images/graduation.jpg" alt="Sajal Islam in Vanderbilt doctoral regalia holding his diploma" width="900" height="1199" loading="lazy"><figcaption>Ph.D. commencement, Vanderbilt University, 2026</figcaption></figure>
         <h2>Education</h2>
         <ul class="tl">
           <li class="hot"><div class="d">2026</div><b>Ph.D., Interdisciplinary Materials Science</b><span>Vanderbilt University · Advisor: Prof. Ronald D. Schrimpf</span></li>
