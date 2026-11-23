@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sajal Islam, Ph.D.</title>
+<meta name="description" content="Sajal Islam, Ph.D. Postdoctoral Fellow, Center for Reliable & Trusted Electronics, Indiana University. Radiation effects and reliability of wide-bandgap power devices: SiC, GaN and β-Ga₂O₃.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE formal and quietly dramatic: a scholar's site with one striking idea
+   IDEA a beam-line: heavy ions crossing a semiconductor crystal, the moment his research studies
+   PICTURE live canvas on the home page, ions streak through a crystal lattice and split charge into electrons and holes
+   COLOUR deep lattice green-black #0a1a1f bands, crystal cyan #7fd6e6, ion magenta #ff4f80; content on white / night #0d1317
+   TYPE Fraunces 600 display + Inter text
+   LAYOUT separate pages behind a top bar; each page opens with a dark title band, then light content; stacks under 640px */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0d1317);--ink:light-dark(#121c21,#e6edf0);--mute:light-dark(#55656d,#9aacb4);--rule:light-dark(#e1e8eb,#223038);--card:light-dark(#f4f8f9,#131c21);--deep:#0a1a1f;--deep2:#10272e;--cyan:#7fd6e6;--ion:#ff4f80;--acc:light-dark(#0f6e83,#7fd6e6);--hot:light-dark(#d02e5f,#ff6f96)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
+a{color:var(--acc);text-underline-offset:3px}
+a:hover{color:var(--hot)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;margin:0}
+h2{font-size:clamp(26px,3vw,34px);margin-bottom:18px}
+h3{font-size:20px;margin-bottom:8px}
+p{margin:0 0 14px}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:max(5vw,16px)}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:rgba(10,26,31,.92);backdrop-filter:blur(10px);color:#fff;border-bottom:1px solid rgba(127,214,230,.15)}
+.bar .wrap{display:flex;align-items:center;gap:24px;min-height:64px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:19px;margin-right:auto;white-space:nowrap}
+.logo i{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--ion),#7a2bd0 60%,var(--cyan));display:grid;place-items:center;font:600 14px Inter,sans-serif;font-style:normal}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs a{flex:none;color:#b9cfd5;text-decoration:none;font-size:15px;font-weight:500;padding:10px 14px;border-radius:8px;min-height:44px;display:flex;align-items:center}
+.tabs a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.tabs a[aria-current=page]{color:#fff;background:rgba(127,214,230,.14);box-shadow:inset 0 -2px 0 var(--ion)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ion);outline-offset:2px}
+
+/* views */
+.view{display:none}
+.view.on{display:block;animation:rise .45s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* home hero */
+.hero{position:relative;background:var(--deep);color:#fff;overflow:hidden;min-height:min(86svh,760px);display:grid;align-items:center}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,26,31,.96) 0%,rgba(10,26,31,.75) 42%,rgba(10,26,31,0) 75%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:64px}
+.hero h1{font-size:clamp(46px,7.5vw,92px);line-height:1;margin-bottom:18px}
+.hero h1 span{display:block;font-size:.42em;font-weight:500;color:var(--cyan);letter-spacing:0;margin-top:12px}
+.hero .lead{font-size:clamp(18px,1.9vw,21px);color:#cfe0e5;max-width:31em;margin-bottom:28px}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.04)}
+.btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn.main{background:var(--ion);border-color:var(--ion);color:#fff}
+.btn.main:hover{background:#ff6a94;color:#fff}
+.legend{position:absolute;right:max(5vw,16px);bottom:20px;z-index:1;display:flex;gap:16px;font-size:13px;color:#a9c2c9}
+.legend b{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+.strip{background:var(--deep2);color:#fff}
+.strip .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(13em,1fr));gap:0}
+.strip .wrap>div{padding:26px 20px;border-left:1px solid rgba(127,214,230,.15)}
+.strip .wrap>div:first-child{border-left:0;padding-left:0}
+.strip b{display:block;font-family:Fraunces,Georgia,serif;font-size:clamp(34px,4vw,46px);line-height:1;color:var(--cyan);white-space:nowrap}
+.strip span{font-size:15px;color:#b9cfd5}
+
+.sec{padding-block:clamp(40px,6vw,80px)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,5vw,64px)}
+.news{list-style:none;padding:0;margin:0}
+.news li{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.news time{color:var(--hot);font-weight:600;font-size:14px;white-space:nowrap;padding-top:2px}
+.feature{border-radius:16px;background:var(--card);border:1px solid var(--rule);padding:26px;position:relative;overflow:hidden}
+.feature .k{font-size:14px;font-weight:600;color:var(--acc);margin-bottom:8px}
+.feature h3{font-size:24px}
+.go{display:grid;grid-template-columns:repeat(auto-fit,minmax(14em,1fr));gap:16px;margin-top:22px}
+.go a{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--rule);border-radius:14px;padding:20px;transition:transform .2s,border-color .2s}
+.go a:hover{transform:translateY(-3px);border-color:var(--acc);color:var(--ink)}
+.go b{font-family:Fraunces,Georgia,serif;font-size:21px;display:block;margin-bottom:4px}
+.go span{color:var(--mute);font-size:15px}
+.go em{font-style:normal;color:var(--hot);font-weight:600}
+
+/* page title bands */
+.band{background:var(--deep);color:#fff;position:relative;overflow:hidden;background-image:radial-gradient(rgba(127,214,230,.18) 1.2px,transparent 1.4px);background-size:26px 26px}
+.band::before{content:"";position:absolute;width:3px;height:180%;right:22%;top:-40%;background:linear-gradient(transparent,var(--ion),transparent);transform:rotate(18deg);box-shadow:0 0 18px var(--ion)}
+.band .wrap{position:relative;padding-block:clamp(40px,6vw,72px)}
+.band h1{font-size:clamp(38px,5.5vw,60px);margin-bottom:10px}
+.band p{color:#cfe0e5;font-size:18px;max-width:40em;margin:0}
+
+/* research */
+.els{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:8px 0 40px}
+.el{border-radius:16px;padding:22px;color:#fff;position:relative;min-height:230px;display:flex;flex-direction:column}
+.el .sym{font-family:Fraunces,Georgia,serif;font-size:52px;line-height:1;margin:6px 0 6px}
+.el .eg{font-size:14px;opacity:.85}
+.el .eg b{font-size:22px;font-family:Fraunces,Georgia,serif;opacity:1;display:block}
+.el p{font-size:15px;margin:auto 0 0;opacity:.95;padding-top:12px}
+.el:nth-child(1){background:linear-gradient(150deg,#16424d,#0a1a1f)}
+.el:nth-child(2){background:linear-gradient(150deg,#2b3a78,#0f1530)}
+.el:nth-child(3){background:linear-gradient(150deg,#7a1f45,#22101c)}
+.proj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.proj article{border:1px solid var(--rule);border-radius:14px;padding:22px;background:var(--bg)}
+.proj .f{display:inline-block;font-size:13px;font-weight:600;color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent);padding:3px 10px;border-radius:999px;margin-bottom:12px}
+.proj p{color:var(--mute);font-size:15px;margin:0}
+.proj.ms{grid-template-columns:repeat(2,minmax(0,1fr))}
+.kit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.kit>div{border:1px solid var(--rule);border-radius:14px;padding:20px;background:var(--card)}
+.kit .plain li{font-size:15px;margin-bottom:6px}
+.course{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:8px 0 0}
+.course li{font-size:14px;border:1px solid var(--rule);border-radius:8px;padding:4px 10px;background:var(--card)}
+.beyond{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.beyond div{border-radius:14px;padding:20px;background:linear-gradient(150deg,var(--deep2),var(--deep));color:#e6edf0}
+.beyond b{font-family:Fraunces,Georgia,serif;font-size:20px;display:block;margin-bottom:6px;color:#fff}
+.beyond span{font-size:15px;color:#b9cfd5}
+.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.tags li{background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-size:14px}
+.ai{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center;margin-top:48px;padding:28px;border-radius:18px;background:var(--card);border:1px solid var(--rule)}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.flow span{flex:1 1 5em;text-align:center;padding:14px 10px;border-radius:12px;background:var(--bg);border:1px solid var(--rule);font-size:14px;font-weight:600}
+.flow i{font-style:normal;color:var(--hot);font-weight:700}
+
+/* publications */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:26px}
+.chip{font:500 15px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tools input{font:16px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);flex:1 1 14em;max-width:22em;margin-left:auto}
+.yr{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:24px;padding-block:8px}
+.yr>h2{font-size:44px;color:var(--rule);-webkit-text-stroke:1px var(--mute);align-self:start;position:sticky;top:84px}
+.paper{border:1px solid var(--rule);border-radius:14px;padding:18px 20px;margin-bottom:14px;background:var(--bg);transition:border-color .2s}
+.paper:hover{border-color:var(--acc)}
+.paper .t{font-weight:600;font-size:17px;line-height:1.4;display:block;margin-bottom:6px}
+.paper .a{font-size:15px;color:var(--mute)}
+.paper .a b{color:var(--ink)}
+.paper .m{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px;font-size:14px}
+.paper .v{font-style:italic}
+.pill{font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.new{background:var(--ion);color:#fff}
+.pill.rv{background:color-mix(in srgb,var(--acc) 12%,transparent);color:var(--acc)}
+.pill.cf{background:color-mix(in srgb,var(--hot) 12%,transparent);color:var(--hot)}
+.doi{font-weight:600;text-decoration:none}
+.empty{color:var(--mute);padding:20px 0}
+
+/* timeline lists */
+.tl{list-style:none;margin:0;padding:0 0 0 22px;border-left:2px solid var(--rule)}
+.tl li{position:relative;padding:0 0 22px}
+.tl li::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--acc)}
+
+.tl .d{font-size:14px;font-weight:600;color:var(--hot);white-space:nowrap}
+.tl b{display:block;font-size:16.5px;line-height:1.4}
+.tl span{color:var(--mute);font-size:15px}
+.inv{font-size:12.5px;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--ion);color:#fff;margin-left:6px;vertical-align:2px}
+.map{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.map span{border-radius:12px;padding:12px 16px;background:var(--card);border:1px solid var(--rule);font-size:15px}
+.map b{font-family:Fraunces,Georgia,serif;font-size:22px;display:block;line-height:1.1}
+details{border:1px solid var(--rule);border-radius:14px;padding:0 20px;margin-top:28px}
+summary{cursor:pointer;font-weight:600;min-height:52px;display:flex;align-items:center}
+details[open]{padding-bottom:12px}
+
+/* cv */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(16em,1fr));gap:16px}
+.award{border-radius:14px;padding:20px;border:1px solid var(--rule);background:var(--card)}
+.award.top{background:linear-gradient(140deg,#7a1f45,#0a1a1f);color:#fff;border:0;grid-column:span 2}
+.award .y{font-size:14px;font-weight:600;color:var(--hot)}
+.award.top .y{color:#ffb3c8}
+.award b{display:block;font-family:Fraunces,Georgia,serif;font-size:20px;line-height:1.2;margin:4px 0}
+.award span{font-size:15px;color:var(--mute)}
+.award.top span{color:#e7cbd5}
+.award.top a{color:#fff}
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
+.plain{padding-left:1.1em;margin:0}
+.plain li{margin-bottom:10px}
+.plain span{color:var(--mute);font-size:15px;display:block}
+
+/* contact */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(15em,1fr));gap:16px}
+.contact a,.contact div{display:block;border:1px solid var(--rule);border-radius:16px;padding:24px;text-decoration:none;color:var(--ink);background:var(--card)}
+.contact a:hover{border-color:var(--acc);color:var(--ink)}
+.contact b{font-family:Fraunces,Georgia,serif;font-size:22px;display:block;margin-bottom:4px}
+.contact span{color:var(--mute);font-size:15px;overflow-wrap:anywhere}
+
+footer{background:var(--deep);color:#9fb7be;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;padding-block:26px}
+footer a{color:#cfe0e5}
+
+@media(max-width:900px){.els,.proj,.proj.ms,.kit,.beyond,.cols3{grid-template-columns:minmax(0,1fr)}.grid2,.ai{grid-template-columns:minmax(0,1fr)}.award.top{grid-column:auto}.el{min-height:0}}
+@media(max-width:640px){.bar .wrap{flex-wrap:wrap;gap:0;padding-top:8px}.logo{width:100%;margin-bottom:2px}.tabs{width:100%}.tabs a{padding:8px 10px;font-size:14px}.hero::after{background:linear-gradient(180deg,rgba(10,26,31,.55),rgba(10,26,31,.92) 70%)}.hero{align-items:end}.legend{display:none}.strip .wrap>div{padding-left:0;border-left:0;border-top:1px solid rgba(127,214,230,.15)}.yr{grid-template-columns:minmax(0,1fr);gap:4px}.yr>h2{position:static;font-size:34px}.news li{grid-template-columns:minmax(0,1fr);gap:2px}.tools input{margin-left:0;max-width:none}}
+@media(prefers-reduced-motion:reduce){.view.on{animation:none}.go a{transition:none}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#home"><i>SI</i>Sajal Islam</a>
+    <nav class="tabs" aria-label="Pages">
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="view" id="v-home">
+  <div class="hero">
+    <canvas id="sky" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1>Sajal Islam, Ph.D.<span>Radiation effects in wide-bandgap power devices</span></h1>
+      <p class="lead">Postdoctoral Fellow at the Center for Reliable &amp; Trusted Electronics, Indiana University. I study how a single heavy ion can destroy a high-voltage SiC, GaN or β-Ga₂O₃ device, and how to design devices that survive in space.</p>
+      <div class="cta">
+        <a class="btn main" href="#research">Explore my research</a>
+        <a class="btn" href="#publications">Publications</a>
+        <a class="btn" href="mailto:sajislam@iu.edu">sajislam@iu.edu</a>
+      </div>
+    </div>
+    <div class="legend"><span><b style="background:var(--ion)"></b>Heavy ion</span><span><b style="background:var(--cyan)"></b>Electrons</span><span><b style="background:#ffc2d4"></b>Holes</span></div>
+  </div>
+  <div class="strip"><div class="wrap" id="stats"></div></div>
+  <div class="sec">
+    <div class="wrap grid2">
+      <div>
+        <h2>News</h2>
+        <ul class="news">
+          <li><time>Oct 2026</time><div>New paper in <i>IEEE Transactions on Nuclear Science</i> on how ion LET and epitaxial thickness shape single-event effects in vertical GaN diodes.</div></li>
+          <li><time>Aug 2026</time><div>First-author paper published in <i>IEEE TNS</i>: heavy-ion single-event effects in 6.5 kV and 10 kV SiC power MOSFETs.</div></li>
+          <li><time>Jun 2026</time><div>Paper in <i>IEEE Transactions on Device and Materials Reliability</i> on the trade-off between on-resistance and burnout thresholds in SiC devices.</div></li>
+          <li><time>May 2026</time><div>Ph.D. in Interdisciplinary Materials Science conferred by Vanderbilt University.</div></li>
+          <li><time>Apr 2026</time><div>Received the <a href="https://www.vanderbilt.edu/vinse/2026/04/02/ims-2026-ph-d-graduate-sajal-islam-wins-ieee-npss-graduate-scholarship-award/">IEEE NPSS Graduate Scholarship Award</a>.</div></li>
+          <li><time>Mar 2026</time><div>Joined IU-CREATE at Indiana University Bloomington as a Postdoctoral Fellow.</div></li>
+        </ul>
+      </div>
+      <div>
+        <div class="feature">
+          <div class="k">Latest first-author paper · 2026</div>
+          <h3>Heavy Ion Induced Single Event Effects in 6.5 and 10 kV SiC Power MOSFETs and Correlation to the SELC and SEB Depletion Capacitance Energy Models</h3>
+          <p style="color:var(--mute);font-size:15px"><i>IEEE Transactions on Nuclear Science</i>, vol. 73, pp. 2897–2905, Aug. 2026</p>
+          <a class="doi" href="https://doi.org/10.1109/TNS.2026.3714726">Read the paper →</a>
+        </div>
+        <div class="go">
+          <a href="#talks"><b>Talks</b><span><em id="nTalks"></em> presentations at NSREC, RADECS, DRC, CERN and more</span></a>
+          <a href="#cv"><b>CV</b><span>Experience, teaching, awards and service</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="view" id="v-research">
+  <div class="band"><div class="wrap"><h1>Research</h1><p>Making wide-bandgap power electronics survive the radiation of space.</p></div></div>
+  <div class="sec"><div class="wrap">
+    <div class="grid2" style="margin-bottom:40px">
+      <div>
+        <p style="font-size:19px">Power electronics for satellites, lunar systems and deep-space missions need devices that block thousands of volts efficiently. Wide-bandgap semiconductors do that far better than silicon, but a single heavy ion can make them leak or burn out at a fraction of their rated voltage.</p>
+        <p>My research aims to improve the radiation hardness of these devices. I combine ion-strike simulation, electrical and materials characterization and controlled irradiation experiments to find where and why devices fail, and use that to propose radiation-robust designs. I did my Ph.D. with Prof. Ronald D. Schrimpf at Vanderbilt's Institute for Space and Defense Electronics, and continue this work at IU-CREATE.</p>
+      </div>
+      <div>
+        <h3>Interests</h3>
+        <ul class="tags">
+          <li>Single-event burnout &amp; leakage</li><li>Total ionizing dose</li><li>Device physics</li><li>Defects &amp; reliability</li><li>Thin films (PLD, ALD, CVD)</li><li>Heterostructures &amp; interfaces</li><li>TCAD &amp; device modeling</li><li>AI for reliability</li>
+        </ul>
+      </div>
+    </div>
+    <h2>Three materials</h2>
+    <div class="els">
+      <div class="el"><div class="eg">Silicon carbide (4H)<b>~3.3 eV</b></div><div class="sym">SiC</div><p>Burnout and leakage in diodes and MOSFETs rated 1.2 kV to 10 kV, and physical models that predict their thresholds.</p></div>
+      <div class="el"><div class="eg">Gallium nitride<b>~3.4 eV</b></div><div class="sym">GaN</div><p>Vertical PiN diodes and AlGaN/GaN transistors: how ion LET, epitaxial thickness and edge termination set failure.</p></div>
+      <div class="el"><div class="eg">Beta gallium oxide<b>~4.8 eV</b></div><div class="sym">β-Ga₂O₃</div><p>Schottky barrier diodes with Pt/PtOx contacts and high-k field plates that raise the burnout threshold.</p></div>
+    </div>
+    <h2>Funded projects</h2>
+    <div class="proj">
+      <article><span class="f">Air Force Center of Excellence</span><h3>Raising burnout tolerance in power devices</h3><p>Irradiation studies of β-Ga₂O₃ Schottky diodes, SiC diodes and SiC MOSFETs with heavy ions, Cf-252 and Am-241, locating damage to guide mitigation.</p></article>
+      <article><span class="f">NASA LuSTR</span><h3>Radiation-hard SiC for the lunar surface</h3><p>Ion-strike simulation of stopping range and energy deposition, and experiments on high-voltage SiC devices, including at lunar-night temperatures.</p></article>
+      <article><span class="f">NASA SBIR</span><h3>GaN power devices under radiation</h3><p>Experiments and defect characterization on vertical GaN PiN diodes to improve their performance in radiation environments.</p></article>
+    </div>
+    <div class="ai">
+      <div>
+        <h2>Data for AI-driven reliability</h2>
+        <p>Through Vanderbilt's VALIANT initiative, I generate experimental and modeling datasets that train and validate AI models, which predict device performance, degradation and failure and guide device design.</p>
+      </div>
+      <div class="flow"><span>Irradiation tests</span><i>→</i><span>Failure datasets</span><i>→</i><span>AI models</span><i>→</i><span>Hardened designs</span></div>
+    </div>
+    <h2 style="margin-top:56px">Before radiation effects: M.S. research</h2>
+    <p style="max-width:46em">At Missouri State University (2019–2021), with Prof. Kartik Ghosh, I worked on thin films and heterostructures for energy and magnetic applications. My main project was a low-cost FTO/TiO₂/CuO/Au heterojunction solar cell.</p>
+    <div class="proj ms">
+      <article><span class="f">Thesis project</span><h3>TiO₂/CuO heterojunction solar cells</h3><p>Grew TiO₂ films on glass, quartz and Si by pulsed laser deposition, built FTO/TiO₂/CuO/Au devices, characterized them with XRD, SEM-EDS, Raman and UV-Vis, and modeled defects and efficiency in SCAPS-1D.</p></article>
+      <article><span class="f">Thin films</span><h3>Oxide films and nanomaterials</h3><p>PLD-grown ZnO films; Al-doped ZnO by a hydrothermal route; sol-gel iron oxide nanoparticles with nitrogen doping to control magnetic properties.</p></article>
+      <article><span class="f">Ferroelectrics &amp; magnetism</span><h3>Doped BaTiO₃ and LiNbO₃</h3><p>Pulsed laser annealing and laser-assisted CVD of doped BaTiO₃ and LiNbO₃ films, and the effect of annealing on their structure and magnetism, measured by SQUID magnetometry.</p></article>
+      <article><span class="f">Computation</span><h3>DFT and molecular dynamics</h3><p>Structural, electronic and magnetic properties with Quantum ESPRESSO; bulk modulus, thermal expansion and diffusion with LAMMPS; run on Google Cloud and nanoHUB.</p></article>
+    </div>
+
+    <h2 style="margin-top:56px">Instruments &amp; techniques</h2>
+    <div class="kit">
+      <div><h3>Radiation sources</h3><ul class="plain"><li>Heavy ions and protons, Vanderbilt Pelletron accelerator</li><li>Heavy ions, Texas A&amp;M Cyclotron Institute</li><li>X-rays, Aracor 4100 irradiator</li><li>Cf-252 and Am-241 sources</li><li>Single- and two-photon absorption laser testing (SPA, TPA)</li></ul></div>
+      <div><h3>Radiation &amp; reliability testing</h3><ul class="plain"><li>Single-event burnout (SEB), leakage current (SELC) and gate rupture (SEGR)</li><li>Total ionizing dose (TID)</li><li>Stress-induced leakage current (SILC) and bias stress</li><li>Bias temperature instability (NBTI/PBTI)</li></ul></div>
+      <div><h3>Electrical characterization</h3><ul class="plain"><li>IV, CV, pulsed IV and high-power testing</li><li>Transfer and output curves; gate and drain leakage</li><li>Breakdown voltage, threshold voltage, R<sub>DS(on)</sub> and safe operating area</li><li>IV vs. temperature in a cryostat; Hall effect and magneto-transport</li><li>Keysight/Agilent B1505A, Keithley 4200A-SCS and 2410; manual probe station</li></ul></div>
+      <div><h3>Materials characterization</h3><ul class="plain"><li>XRD (Bruker D8) with rocking curves and Rietveld refinement in TOPAS</li><li>Raman and photoluminescence (Horiba LabRAM HR800)</li><li>SEM-EDS (FEI Quanta 200F) and AFM</li><li>SQUID magnetometry (Quantum Design MPMS)</li><li>UV-Vis spectroscopy</li></ul></div>
+      <div><h3>Growth &amp; device preparation</h3><ul class="plain"><li>Pulsed laser deposition, laser-assisted CVD, MOCVD, ALD</li><li>Sputtering, sol-gel, spin coating, hydrothermal synthesis</li><li>High-vacuum systems and chamber maintenance</li><li>Decapping by milling and etching; wedge and ball wire bonding; wafer dicing; PCB design</li></ul></div>
+      <div><h3>Simulation &amp; software</h3><ul class="plain"><li>SRIM (ion range and energy deposition)</li><li>SCAPS-1D, Quantum ESPRESSO, LAMMPS</li><li>Python, MATLAB, LabVIEW, OriginPro, C/C++</li><li>VESTA, Mercury, OVITO, ImageJ, WEKA</li><li>PSpice, Multisim</li></ul></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="view" id="v-publications">
+  <div class="band"><div class="wrap"><h1>Publications</h1><p>Peer-reviewed work on single-event effects in SiC, GaN and β-Ga₂O₃ power devices. Full list on <a href="https://scholar.google.com/citations?user=xDAdckoAAAAJ&amp;hl=en" style="color:var(--cyan)">Google Scholar</a>.</p></div></div>
+  <div class="sec"><div class="wrap">
+    <div class="tools" role="group" aria-label="Filter publications">
+      <button class="chip" type="button" id="c-all" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" id="c-j" data-f="j" aria-pressed="false">Journal</button>
+      <button class="chip" type="button" id="c-c" data-f="c" aria-pressed="false">Conference</button>
+      <input id="q" type="search" placeholder="Search titles or co-authors" aria-label="Search publications">
+    </div>
+    <div id="pubs"></div>
+  </div></div>
+</section>
+
+<!-- TALKS -->
+<section class="view" id="v-talks">
+  <div class="band"><div class="wrap"><h1>Talks &amp; presentations</h1><p>Invited, oral and poster presentations at the main radiation-effects and device conferences.</p></div></div>
+  <div class="sec"><div class="wrap">
+    <div class="map" id="venues"></div>
+    <div class="grid2">
+      <div><h2>Oral presentations</h2><ul class="tl" id="orals"></ul></div>
+      <div><h2>Posters</h2><ul class="tl" id="posters"></ul></div>
+    </div>
+    <details><summary>Talks with collaborators (8)</summary><ul class="tl" id="contrib" style="margin-top:10px"></ul></details>
+  </div></div>
+</section>
+
+<!-- TEACHING -->
+<section class="view" id="v-teaching">
+  <div class="band"><div class="wrap"><h1>Teaching</h1><p>Teaching since 2013, from coaching centers in Dhaka to university physics labs in the United States.</p></div></div>
+  <div class="sec"><div class="wrap">
+    <div class="grid2">
+      <div>
+        <p style="font-size:19px">I started teaching in Dhaka as an undergraduate, led a polytechnic classroom in electrical engineering, and taught physics labs in the United States, including a full move online during the 2020 lockdown. Across all of them, I have tried to make hard ideas concrete and keep every student engaged.</p>
+      </div>
+      <div class="cards" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div class="award"><div class="y">Missouri State, 2021</div><b>Outstanding Teaching Assistant</b></div>
+        <div class="award"><div class="y">Missouri State, 2021</div><b>Certified Distance Educator</b><span><a href="https://blogs.missouristate.edu/physics/2021/05/18/making-an-impact-as-an-instructor/">story</a></span></div>
+        <div class="award" style="grid-column:span 2"><div class="y">Student evaluations</div><b>4.26 / 5.00</b><span>College of Natural and Applied Sciences evaluation score, Missouri State University</span></div>
+      </div>
+    </div>
+    <h2 style="margin-top:48px">Teaching experience</h2>
+    <ul class="tl">
+      <li class="hot"><div class="d">2021 – 2022</div><b>Graduate Teaching Assistant, Interdisciplinary Materials Science</b><span>Vanderbilt University</span></li>
+      <li class="hot"><div class="d">2019 – 2021</div><b>Graduate Teaching Assistant, Physics, Astronomy &amp; Materials Science</b><span>Missouri State University · Introductory Physics I and Foundations of Physics I laboratories. Updated the lab manual and recorded video lectures for the full courses when teaching moved online in 2020.</span></li>
+      <li><div class="d">2018 – 2019</div><b>GRE Faculty</b><span>Graduate Resources Enhancing Center, Chittagong and Dhaka</span></li>
+      <li><div class="d">2017 – 2018</div><b>Instructor, Electrical Engineering</b><span>Shyamoli Ideal Polytechnic Institute, Chittagong · Electrical Circuits 1 &amp; 2, DC Machines 2, AC Machines 2, Installation Planning &amp; Estimating, Communication Engineering, Instrumentation &amp; Process Control. Wrote course plans, lesson plans and exams, and graded answer scripts.</span></li>
+      <li><div class="d">2015</div><b>Director of Science Department and Senior Lecturer</b><span>Ideal A+ Coaching, Dhaka</span></li>
+      <li><div class="d">2014</div><b>Senior Lecturer, Science</b><span>Sara Academy, Dhaka</span></li>
+      <li><div class="d">2013</div><b>Lecturer</b><span>Promise A+ Coaching, Dhaka</span></li>
+    </ul>
+    <h2 style="margin-top:40px">Training others in the lab</h2>
+    <p style="max-width:46em">At Missouri State I was responsible for maintaining the pulsed laser deposition system and running SQUID and SEM-EDS measurements for other departments (2019–2020), and I trained group members on PLD, laser-assisted CVD, XRD, SEM and SQUID (2020).</p>
+  </div></div>
+</section>
+
+<!-- CV -->
+<section class="view" id="v-cv">
+  <div class="band"><div class="wrap"><h1>Curriculum vitae</h1><p>Experience, education, honors, leadership and service.</p></div></div>
+  <div class="sec"><div class="wrap">
+    <div class="grid2">
+      <div>
+        <h2>Experience</h2>
+        <ul class="tl">
+          <li class="hot"><div class="d">2026 – present</div><b>Postdoctoral Fellow</b><span>Center for Reliable &amp; Trusted Electronics (IU-CREATE), Indiana University Bloomington</span></li>
+          <li><div class="d">2022 – 2026</div><b>Graduate Research Assistant</b><span>Institute for Space and Defense Electronics, Vanderbilt University</span></li>
+          <li><div class="d">2021 – 2022</div><b>Teaching Assistant</b><span>Interdisciplinary Materials Science, Vanderbilt University</span></li>
+          <li><div class="d">2019 – 2021</div><b>Teaching Assistant</b><span>Physics, Astronomy &amp; Materials Science, Missouri State University</span></li>
+          <li><div class="d">2018 – 2019</div><b>Research Assistant</b><span>GUSTO-A Research Group, Chittagong, Bangladesh</span></li>
+          <li><div class="d">2018 – 2019</div><b>GRE Faculty</b><span>Graduate Resources Enhancing Center, Chittagong and Dhaka</span></li>
+          <li><div class="d">2017 – 2018</div><b>Lecturer, Electrical &amp; Electronic Engineering</b><span>Shyamoli Ideal Polytechnic Institute, Chittagong</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Education</h2>
+        <ul class="tl">
+          <li class="hot"><div class="d">2026</div><b>Ph.D., Interdisciplinary Materials Science</b><span>Vanderbilt University · Advisor: Prof. Ronald D. Schrimpf</span></li>
+          <li><div class="d">2021</div><b>M.S., Materials Science</b><span>Missouri State University · TiO₂/CuO heterojunction solar cells</span></li>
+          <li><div class="d">2017</div><b>B.Sc., Electrical &amp; Electronic Engineering</b><span>Primeasia University, Dhaka</span></li>
+        </ul>
+        <h3 style="margin-top:20px">Selected graduate coursework</h3>
+        <p style="font-size:14px;color:var(--mute);margin:10px 0 0">Vanderbilt</p>
+        <ul class="course"><li>Radiation Effects &amp; Reliability</li><li>Solid-State Effects &amp; Devices I &amp; II</li><li>Solid-State Materials</li><li>Atomic Arrangement of Solids</li><li>Nanoscale Science &amp; Engineering</li><li>Nanoparticles</li><li>Statistical Thermodynamics</li></ul>
+        <p style="font-size:14px;color:var(--mute);margin:14px 0 0">Missouri State</p>
+        <ul class="course"><li>Quantum Mechanics</li><li>Advanced Quantum Mechanics</li><li>Structure of Solids</li><li>Computational Materials Science</li><li>Advanced Materials Synthesis</li><li>Electron Microscopy Techniques</li><li>Thermodynamics of Materials</li><li>Experimental Design</li></ul>
+        <p style="margin-top:18px;font-size:15px">Teaching history is on the <a href="#teaching">Teaching</a> page.</p>
+      </div>
+    </div>
+    <h2 style="margin-top:40px">Honors &amp; awards</h2>
+    <div class="cards">
+      <div class="award top"><div class="y">2026</div><b>IEEE NPSS Graduate Scholarship Award</b><span>IEEE Nuclear and Plasma Sciences Society, given to a small number of graduate researchers worldwide · <a href="https://www.vanderbilt.edu/vinse/2026/04/02/ims-2026-ph-d-graduate-sajal-islam-wins-ieee-npss-graduate-scholarship-award/">news</a></span></div>
+      <div class="award"><div class="y">2024</div><b>Anchor Award for Research Excellence</b><span>Graduate Student Council, Vanderbilt · <a href="https://news.vanderbilt.edu/2024/06/17/graduate-student-council-announces-2024-anchor-award-winners/">news</a></span></div>
+      <div class="award"><div class="y">2023</div><b>Fan Favorite Poster Award</b><span>VINSE NanoDay, Vanderbilt · <a href="https://my.vanderbilt.edu/vinsenews/2023/12/2023-nanoday-poster-award-winners/">news</a></span></div>
+      <div class="award"><div class="y">2025</div><b>Certificate of Recognition</b><span>Academic Affairs Chair, Vanderbilt</span></div>
+      <div class="award"><div class="y">2021</div><b>Outstanding Teaching Assistant</b><span>Missouri State University</span></div>
+      <div class="award"><div class="y">2021</div><b>Certified Distance Educator</b><span>Missouri State University</span></div>
+    </div>
+    <p style="margin-top:16px;color:var(--mute);font-size:15px">Travel grants: CERN (2023); Vanderbilt GLI (2023, 2024, 2025); Vanderbilt GSC (2023, 2024).</p>
+    <div class="cols3" style="margin-top:40px">
+      <div>
+        <h2>Peer review</h2>
+        <p><b style="font-family:Fraunces,Georgia,serif;font-size:40px;color:var(--hot)">30</b> verified reviews (Web of Science, Dec 2025) for <i>IEEE Trans. Nuclear Science</i>, <i>IEEE Trans. Electron Devices</i>, <i>IEEE Trans. Device and Materials Reliability</i>, <i>IEEE Electron Device Letters</i> and <i>Micro and Nanostructures</i>.</p>
+      </div>
+      <div>
+        <h2>Leadership</h2>
+        <ul class="plain">
+          <li>Academic Co-Vice President, Graduate Student Council<span>2024–25 · organized 3 Minute Thesis; raised travel grants from $500 to $1,000</span></li>
+          <li>President, ECE Student Association<span>2024–25 · co-founder and secretary 2022–24</span></li>
+          <li>Public Relations Chair, Graduate Student Council<span>2023–24</span></li>
+          <li>Department Representative, Materials Science<span>2022–23</span></li>
+          <li>Graduate Representative, Muslim Student Association<span>Vanderbilt, from 2023</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Service</h2>
+        <ul class="plain">
+          <li>Poster judge, VIRAL Symposium<span>Vanderbilt, 2023</span></li>
+          <li>Poster judge, VINSE NanoDay<span>Vanderbilt, 2024</span></li>
+          <li>Event Chair, Bangladeshi Student Association<span>2022–23</span></li>
+          <li>Lab safety certified<span>Radiation, chemical and laser safety</span></li>
+          <li>Instrument upkeep and training<span>PLD maintenance; trained group members on PLD, XRD, SEM and SQUID, Missouri State</span></li>
+          <li>Member, IEEE, IEEE NPSS and IEEE Young Professionals<span>2022 – present</span></li>
+        </ul>
+      </div>
+    </div>
+    <h2 style="margin-top:48px">Beyond the lab</h2>
+    <div class="beyond">
+      <div><b>Child journalist</b><span>Wrote for "Iccheghuri," the children's section of banglanews24.com, and trained in script writing and camera operation with the Children's Television Foundation of Bangladesh.</span></div>
+      <div><b>Short films</b><span>Made short films shown at film festivals in Bangladesh, including <i>Mukti</i>, <i>The Signs of Old Dhaka</i> and <i>Tiffin</i>.</span></div>
+      <div><b>Writing &amp; puzzles</b><span>A writer in my spare time, and a long-time Rubik's cube solver.</span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- CONTACT -->
+<section class="view" id="v-contact">
+  <div class="band"><div class="wrap"><h1>Contact</h1><p>I welcome questions about my work, collaborations and speaking invitations.</p></div></div>
+  <div class="sec"><div class="wrap">
+    <div class="contact">
+      <a href="mailto:sajislam@iu.edu"><b>Email</b><span>sajislam@iu.edu</span></a>
+      <div><b>Office</b><span>Center for Reliable &amp; Trusted Electronics<br>Indiana University Bloomington, Indiana</span></div>
+      <a href="https://scholar.google.com/citations?user=xDAdckoAAAAJ&amp;hl=en"><b>Google Scholar</b><span>Publications and citations</span></a>
+      <a href="https://www.linkedin.com/in/sajal-islam/"><b>LinkedIn</b><span>linkedin.com/in/sajal-islam</span></a>
+      <a href="https://www.researchgate.net/profile/Sajal-Islam-2"><b>ResearchGate</b><span>Papers and preprints</span></a>
+    </div>
+  </div></div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Sajal Islam · Updated November 2026</span><span><a href="mailto:sajislam@iu.edu">sajislam@iu.edu</a> · <a href="https://scholar.google.com/citations?user=xDAdckoAAAAJ&amp;hl=en">Scholar</a> · <a href="https://www.linkedin.com/in/sajal-islam/">LinkedIn</a></span></div></footer>
+
+<script>
+{
+const pubs = [
+  {y:2026,t:"Influence of Ion LET and Epitaxial Thickness on Single-Event Effects in Homojunction GaN Vertical Diodes",a:"A. S. Senarath, S. Islam, A. Sengupta, O. Meilander, J. M. Osheroff, T. Anderson, et al.",v:"IEEE Trans. Nucl. Sci., vol. 73, pp. 4023–4030, Oct. 2026",d:"10.1109/TNS.2026.3725651",k:"j",n:1},
+  {y:2026,t:"Comparative Radiation Responses of AlGaN/GaN FinFETs and Planar Devices",a:"T.-F. K. Liu, H. Lee, S. Islam, E. X. Zhang, R. A. Reed, R. D. Schrimpf, S. Rajan, D. M. Fleetwood",v:"IEEE Trans. Nucl. Sci., early access, 2026",d:"10.1109/TNS.2026.3743048",k:"j",n:1},
+  {y:2026,t:"Heavy Ion Induced Single Event Effects in 6.5 and 10 kV SiC Power MOSFETs and Correlation to the SELC and SEB Depletion Capacitance Energy Models",a:"S. Islam, A. Sengupta, D. R. Ball, J. M. Osheroff, A. L. Sternberg, K. F. Galloway, A. F. Witulski, S. L. Kosier, R. D. Schrimpf",v:"IEEE Trans. Nucl. Sci., vol. 73, pp. 2897–2905, Aug. 2026",d:"10.1109/TNS.2026.3714726",k:"j",n:1},
+  {y:2026,t:"Ideal Specific On-Resistance Versus Single-Event Burnout and Leakage Voltage Thresholds in Vertical SiC Power Devices",a:"S. L. Kosier, A. Sengupta, S. Islam, D. R. Ball, J. M. Hutson, A. L. Sternberg, et al.",v:"IEEE Trans. Device Mater. Reliab., vol. 26, pp. 648–651, Jun. 2026",d:"10.1109/TDMR.2026.3689763",k:"j"},
+  {y:2026,t:"Unifying Model for Estimating SELC/SEB in SiC Power Devices Using a Nonlinear Ion Track Resistance",a:"D. R. Ball, S. L. Kosier, K. F. Galloway, A. F. Witulski, A. L. Sternberg, A. Sengupta, S. Islam, et al.",v:"IEEE Trans. Nucl. Sci., vol. 73, pp. 1225–1234, Apr. 2026",d:"10.1109/TNS.2026.3666825",k:"j"},
+  {y:2026,t:"Physical Models for Epitaxial Doping Dependence of SELC in SiC Power Devices",a:"A. Sengupta, S. L. Kosier, D. R. Ball, S. Islam, A. L. Sternberg, J. M. Hutson, et al.",v:"IEEE Trans. Nucl. Sci., vol. 73, pp. 1189–1195, Apr. 2026",d:"10.1109/TNS.2025.3630040",k:"j"},
+  {y:2025,t:"Effects of Epitaxial Layer Thickness on Heavy Ion-Induced Single-Event Burnout in Vertical β-Ga₂O₃ Schottky Barrier Diodes",a:"S. Islam, A. S. Senarath, E. Farzana, D. R. Ball, A. Sengupta, A. L. Sternberg, et al.",v:"IEEE Trans. Nucl. Sci., vol. 72, pp. 2435–2442, Aug. 2025",d:"10.1109/TNS.2025.3576034",k:"j"},
+  {y:2025,t:"Heavy Ion-Induced Single-Event Leakage Current and Burnout in Homojunction GaN p-i-n Diodes",a:"A. S. Senarath, S. Islam, J. R. McBride, O. Meilander, A. Sengupta, H. Pandey, et al.",v:"IEEE Trans. Nucl. Sci., vol. 72, pp. 2377–2385, Aug. 2025",d:"10.1109/TNS.2025.3556730",k:"j"},
+  {y:2025,t:"Effects of Incident Angle on Single-Event Leakage Current Degradation in Heavy-Ion Irradiated 1800- and 4500-V SiC Power MOSFETs",a:"A. Sengupta, C. Martinella, D. R. Ball, K. Niskanen, A. S. Senarath, S. Islam, et al.",v:"IEEE Trans. Nucl. Sci., vol. 72, pp. 2386–2394, Aug. 2025",d:"10.1109/TNS.2025.3563110",k:"j"},
+  {y:2025,t:"Physical Model for SiC Power Device Heavy-Ion Burnout Based on Pre-Strike Depletion Capacitance Energy Storage",a:"S. L. Kosier, A. Sengupta, D. R. Ball, J. M. Hutson, A. L. Sternberg, S. Islam, et al.",v:"IEEE Trans. Nucl. Sci., vol. 72, pp. 1418–1424, Apr. 2025",d:"10.1109/TNS.2025.3546892",k:"j"},
+  {y:2024,t:"Single-Event Effects in Heavy-Ion Irradiated 3-kV SiC Charge-Balanced Power Devices",a:"A. Sengupta, D. R. Ball, S. Islam, A. S. Senarath, A. L. Sternberg, E. X. Zhang, et al.",v:"IEEE Trans. Nucl. Sci., vol. 71, pp. 1447–1454, Aug. 2024",d:"10.1109/TNS.2024.3381964",k:"j"},
+  {y:2024,t:"Single-Event Burnout in Vertical β-Ga₂O₃ Diodes With Pt/PtOx Schottky Contacts and High-k Field-Plate Dielectrics",a:"S. Islam, A. S. Senarath, E. Farzana, D. R. Ball, A. Sengupta, N. S. Hendricks, et al.",v:"IEEE Trans. Nucl. Sci., vol. 71, pp. 515–521, Apr. 2024",d:"10.1109/TNS.2024.3370190",k:"j"},
+  {y:2024,t:"LET and Voltage Dependence of Single-Event Burnout and Single-Event Leakage Current in High-Voltage SiC Power Devices",a:"A. Sengupta, D. R. Ball, A. L. Sternberg, S. Islam, A. S. Senarath, R. A. Reed, et al.",v:"IEEE Trans. Nucl. Sci., vol. 71, pp. 809–815, Apr. 2024",d:"10.1109/TNS.2024.3357129",k:"j"},
+  {y:2024,t:"Single-Event Burnout in Homojunction GaN Vertical PiN Diodes with Hybrid Edge Termination Design",a:"A. S. Senarath, S. Islam, A. Sengupta, M. W. McCurdy, T. Anderson, A. Jacobs, et al.",v:"Appl. Phys. Lett., vol. 124, Art. 132101, Mar. 2024",d:"10.1063/5.0189744",k:"j"},
+  {y:2023,t:"Single-Event Burnout by Cf-252 Irradiation in Vertical β-Ga₂O₃ Diodes with Pt and PtOx Schottky Contacts and High Permittivity Dielectric Field Plate",a:"S. Islam, A. S. Senarath, A. Sengupta, E. X. Zhang, D. R. Ball, D. M. Fleetwood, et al.",v:"Device Research Conference (DRC), Santa Barbara, CA, Jun. 2023",d:"10.1109/DRC58590.2023.10187004",k:"c"},
+  {y:2023,t:"Low-Energy Ion-Induced Single-Event Burnout in Gallium Oxide Schottky Diodes",a:"R. Cadena, D. R. Ball, E. X. Zhang, S. Islam, A. S. Senarath, M. W. McCurdy, et al.",v:"IEEE Trans. Nucl. Sci., vol. 70, no. 4, pp. 363–369, Apr. 2023",k:"j"}
+];
+const orals = [
+  ["Nov 2025","Toward Reliable WBG Devices: Structural Optimization and Radiation-Effect Insights","IU CREATE Seminar, Indiana University",1],
+  ["Aug 2025","When Ions Strike: LET and Epitaxial Thickness in Vertical Homojunction GaN Diodes","NASA NEPP Electronics Technology Workshop"],
+  ["May 2025","Ion-Induced Single Event Effects in 6.5 kV and 10 kV SiC MOSFETs","ROCS / CS MANTECH, New Orleans"],
+  ["Sep 2024","Epitaxial Layer Thickness and Heavy Ion-Induced SEB in Vertical β-Ga₂O₃ Diodes","RADECS, Canary Islands, Spain"],
+  ["Nov 2023","Improvement of SEB Threshold in β-Ga₂O₃ Schottky Diodes","G-RADNEXT Workshop, CERN, Geneva"],
+  ["Jul 2023","SEB in Vertical β-Ga₂O₃ Diodes with Pt/PtOx Contacts and High-k Field Plates","IEEE NSREC, Kansas City"],
+  ["Jun 2023","SEB by Cf-252 Irradiation in Vertical Ga₂O₃ Diodes","Device Research Conference, Santa Barbara"],
+  ["May 2023","SEB in β-Ga₂O₃ Schottky Diodes under Low-Energy Ion Irradiation","Reliability of Compound Semiconductors Workshop, Orlando"],
+  ["Dec 2022","Operation of SiC Power Diodes under Lunar Night Temperatures","NASA Surviving the Night Workshop, Glenn Research Center"],
+  ["Apr 2021","TiO₂–CuO Heterostructure for Cost-Effective Solar Cells","MRS Spring Meeting"],
+  ["Mar 2021","Cost-Effective FTO/TiO₂/CuO/Au Heterojunction Solar Cell","APS March Meeting"],
+  ["Oct 2020","TiO₂–CuO Heterostructure for Solar Cell Applications","Missouri State University Seminar"]
+];
+const posters = [
+  ["Dec 2025","SEE in 6.5 kV and 10 kV SiC MOSFETs and Depletion Capacitance Energy Models","Radiation Damage of Electronics Review, Washington, DC"],
+  ["Sep 2025","SEE in 6.5 kV and 10 kV SiC MOSFETs and SELC/SEB Energy Models","RADECS, Antwerp, Belgium"],
+  ["Oct 2024","Role of Epitaxial Layer Thickness in SEB of β-Ga₂O₃ Diodes","Radiation Damage of Electronics Review"],
+  ["Dec 2023","SEB in Vertical β-Ga₂O₃ Diodes with Pt/PtOx Contacts","VINSE NanoDay · Fan Favorite award"],
+  ["Nov 2023","SEB in Vertical β-Ga₂O₃ Diodes with Pt/PtOx Contacts","Radiation Damage of Electronics Review, Washington, DC"],
+  ["Apr 2023","Radiation Effects in Structurally Improved Ga₂O₃ Power Devices","ECE Day, Vanderbilt"],
+  ["Nov 2021","Pulsed-Laser Charge Generation in an Epitaxial Silicon Diode","VINSE NanoDay, Vanderbilt"]
+];
+const contrib = [
+  ["Jul 2025","Ion LET and Epitaxial Thickness in Homojunction GaN Vertical Diodes","NSREC, Nashville · A. S. Senarath"],
+  ["Jul 2025","Epitaxial Doping Dependence of SELC in SiC Power Devices","NSREC, Nashville · A. Sengupta"],
+  ["Sep 2024","Heavy Ion-Induced SELC and Burnout in GaN PIN Diodes","RADECS, Canary Islands · A. S. Senarath"],
+  ["Sep 2023","SEE in Heavy-Ion Irradiated 3 kV SiC Charge-Balanced Devices","RADECS, Toulouse · A. Sengupta"],
+  ["Jul 2023","LET and Voltage Dependence of SEB and SELC in SiC Devices","NSREC, Kansas City · A. Sengupta"],
+  ["Jul 2022","Low-Energy Ion-Induced SEB in Ga₂O₃ Schottky Diodes","NSREC, Provo · R. Cadena"],
+  ["Mar 2021","CuO–Cu₂O Phase Mixture for Solar Cells","APS March Meeting · R. A. Shams"],
+  ["Mar 2021","Al-doped ZnO Nanoparticles","APS March Meeting · B. Karmakar"]
+];
+
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const me = a => esc(a).replace(/S\. Islam/, "<b>S. Islam</b>");
+
+/* stats */
+const pubd = pubs;
+document.getElementById("stats").innerHTML = [
+  [pubd.length, "peer-reviewed papers"],
+  [orals.length + posters.length, "talks and posters"],
+  [30, "peer reviews for IEEE journals"],
+  ["2026", "IEEE NPSS Graduate Scholar"]
+].map(s => `<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
+document.getElementById("nTalks").textContent = orals.length + posters.length;
+
+/* publications */
+let filt = "all", query = "";
+const pubBox = document.getElementById("pubs");
+const renderPubs = () => {
+  const q = query.toLowerCase();
+  const list = pubs.filter(p => (filt === "all" || p.k === filt) && (!q || (p.t + " " + p.a).toLowerCase().includes(q)));
+  if (!list.length) { pubBox.innerHTML = '<p class="empty">No papers match that search.</p>'; return; }
+  const groups = [...new Set(list.map(p => p.y))];
+  pubBox.innerHTML = groups.map(y => `<div class="yr"><h2>${y}</h2><div>${list.filter(p => p.y === y).map(p => `
+    <article class="paper"><span class="t">${esc(p.t)}</span><span class="a">${me(p.a)}</span>
+      <div class="m"><span class="v">${esc(p.v)}</span>${p.n ? '<span class="pill new">New</span>' : ''}${p.k === "c" ? '<span class="pill cf">Conference</span>' : ''}${p.d ? `<a class="doi" href="https://doi.org/${p.d}">DOI ↗</a>` : ''}</div></article>`).join("")}</div></div>`).join("");
+};
+document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+  filt = b.dataset.f; renderPubs();
+}));
+document.getElementById("q").addEventListener("input", e => { query = e.target.value; renderPubs(); });
+renderPubs();
+
+/* talks */
+const rows = arr => arr.map(r => `<li class="${r[3] ? "hot" : ""}"><div class="d">${r[0]}</div><b>${esc(r[1])}${r[3] ? '<span class="inv">Invited</span>' : ''}</b><span>${esc(r[2])}</span></li>`).join("");
+document.getElementById("orals").innerHTML = rows(orals);
+document.getElementById("posters").innerHTML = rows(posters);
+document.getElementById("contrib").innerHTML = rows(contrib);
+document.getElementById("venues").innerHTML = [["NSREC","IEEE Nuclear & Space Radiation Effects"],["RADECS","Spain · Belgium · France"],["CERN","G-RADNEXT, Geneva"],["DRC","Device Research Conference"],["NASA","NEPP · Glenn Research Center"],["MRS · APS","Materials and physics meetings"]].map(v => `<span><b>${v[0]}</b>${v[1]}</span>`).join("");
+
+/* router */
+const views = ["home","research","publications","talks","teaching","cv","contact"];
+const show = () => {
+  const h = location.hash.slice(1);
+  const v = views.includes(h) ? h : "home";
+  views.forEach(n => document.getElementById("v-" + n).classList.toggle("on", n === v));
+  document.querySelectorAll(".tabs a").forEach(a => { if (a.getAttribute("href") === "#" + v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  window.scrollTo(0, 0);
+  running = v === "home";
+  if (running) start();
+};
+
+/* hero canvas: heavy ions crossing a crystal */
+const cv = document.getElementById("sky");
+const ctx = cv.getContext("2d");
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let W = 0, H = 0, dpr = 1, ions = [], parts = [], last = 0, spawnAt = 0, running = false, raf = 0;
+const size = () => { dpr = Math.min(devicePixelRatio || 1, 2); W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); if (still) frame(0); };
+const ro = new ResizeObserver(size);
+ro.observe(cv);
+const newIon = t => {
+  const narrow = W < 640;
+  const x = W * (narrow ? 0.15 + Math.random()*0.7 : 0.5 + Math.random()*0.45);
+  const ang = (Math.random() - .5) * 0.5;
+  ions.push({x0:x, x1:x + Math.tan(ang) * H, born:t, sp:600 + Math.random()*300});
+};
+const lattice = () => {
+  const g = 30;
+  ctx.fillStyle = "rgba(127,214,230,0.16)";
+  for (let y = g/2; y < H; y += g) for (let x = (y/g % 2 ? g/2 : 0); x < W; x += g) { ctx.beginPath(); ctx.arc(x, y, 1.4, 0, 6.283); ctx.fill(); }
+};
+const frame = t => {
+  ctx.clearRect(0, 0, W, H);
+  lattice();
+  if (still) { ions = [{x0:W*(W<640?.7:.74), x1:W*(W<640?.6:.66), born:-1e9, sp:1}]; }
+  else if (t > spawnAt) { newIon(t); spawnAt = t + 900 + Math.random()*900; }
+  ions = ions.filter(i => still || t - i.born < i.sp + 2600);
+  for (const i of ions) {
+    const age = still ? 1e9 : t - i.born;
+    const p = Math.min(1, age / i.sp);
+    const fade = still ? 0.9 : Math.max(0, 1 - Math.max(0, age - i.sp) / 2600);
+    const xe = i.x0 + (i.x1 - i.x0) * p, ye = H * p;
+    const gr = ctx.createLinearGradient(i.x0, 0, xe, ye);
+    gr.addColorStop(0, `rgba(255,79,128,${0.05*fade})`); gr.addColorStop(1, `rgba(255,79,128,${fade})`);
+    ctx.strokeStyle = gr; ctx.lineWidth = 2.4; ctx.shadowColor = "#ff4f80"; ctx.shadowBlur = 14 * fade;
+    ctx.beginPath(); ctx.moveTo(i.x0, 0); ctx.lineTo(xe, ye); ctx.stroke(); ctx.shadowBlur = 0;
+    if (!still && p < 1 && Math.random() < 0.9) for (let k = 0; k < 3; k++) {
+      parts.push({x:xe, y:ye, vx:(Math.random()-.5)*0.5, vy:(k%2 ? -1 : 1)*(0.15 + Math.random()*0.35), e:k%2, life:1});
+    }
+    if (still) for (let k = 0; k < 120; k++) { const q = Math.random(); const x = i.x0 + (i.x1-i.x0)*q, y = H*q; const e = k%2; ctx.fillStyle = e ? "#7fd6e6" : "#ffc2d4"; ctx.beginPath(); ctx.arc(x + (Math.random()-.5)*16, y + (e?-1:1)*Math.random()*10, 2, 0, 6.283); ctx.fill(); }
+  }
+  for (const s of parts) { s.x += s.vx; s.y += s.vy; s.life -= 0.006; ctx.globalAlpha = Math.max(0, s.life); ctx.fillStyle = s.e ? "#7fd6e6" : "#ffc2d4"; ctx.beginPath(); ctx.arc(s.x, s.y, 2, 0, 6.283); ctx.fill(); }
+  ctx.globalAlpha = 1;
+  parts = parts.filter(s => s.life > 0).slice(-1400);
+};
+const loop = t => { if (!running) { raf = 0; return; } frame(t); raf = requestAnimationFrame(loop); };
+const start = () => { if (still) { frame(0); return; } if (!raf) raf = requestAnimationFrame(loop); };
+document.addEventListener("visibilitychange", () => { if (document.hidden) running = false; else show(); });
+window.addEventListener("hashchange", show);
+show();
+}
+</script>
+</body>
+</html>
