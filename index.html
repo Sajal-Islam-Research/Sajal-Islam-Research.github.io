@@ -119,6 +119,18 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .beyond div{border-radius:14px;padding:20px;background:linear-gradient(150deg,var(--deep2),var(--deep));color:#e6edf0}
 .beyond b{font-family:Fraunces,Georgia,serif;font-size:20px;display:block;margin-bottom:6px;color:#fff}
 .beyond span{font-size:15px;color:#b9cfd5}
+.rgrid{margin-bottom:40px;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center}
+.venn{margin:0;--v1:light-dark(rgba(31,138,158,.20),rgba(127,214,230,.16));--v1s:light-dark(#1f8a9e,#7fd6e6);--v2:light-dark(rgba(75,91,214,.18),rgba(140,153,255,.16));--v2s:light-dark(#4b5bd6,#8c99ff);--v3:light-dark(rgba(255,79,128,.18),rgba(255,111,150,.16));--v3s:light-dark(#d02e5f,#ff6f96)}
+.venn svg{width:100%;height:auto;display:block;overflow:visible}
+.venn .vc circle{stroke-width:2}
+.venn .ion{stroke:var(--hot);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:4 7;opacity:.75}
+.venn text{fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:5px;stroke-linejoin:round}
+.venn .vt{font:600 26px Fraunces,Georgia,serif}
+.venn .vs{font:500 16px Inter,system-ui,sans-serif;fill:var(--mute)}
+.venn .vp{font:600 16px Inter,system-ui,sans-serif}
+.venn .vm{font:700 19px Inter,system-ui,sans-serif;fill:var(--hot)}
+.venn figcaption{text-align:center;color:var(--mute);font-size:15px;margin-top:6px}
+.venn figcaption b{color:var(--ink)}
 .tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
 .tags li{background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-size:14px}
 .ai{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center;margin-top:48px;padding:28px;border-radius:18px;background:var(--card);border:1px solid var(--rule)}
@@ -191,7 +203,7 @@ footer{background:var(--deep);color:#9fb7be;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;padding-block:26px}
 footer a{color:#cfe0e5}
 
-@media(max-width:900px){.portrait{width:min(100%,260px)}.els,.proj,.proj.ms,.kit,.beyond,.cols3{grid-template-columns:minmax(0,1fr)}.grid2,.ai{grid-template-columns:minmax(0,1fr)}.award.top{grid-column:auto}.el{min-height:0}}
+@media(max-width:900px){.rgrid{grid-template-columns:minmax(0,1fr)}.venn{max-width:560px;margin-inline:auto}.portrait{width:min(100%,260px)}.els,.proj,.proj.ms,.kit,.beyond,.cols3{grid-template-columns:minmax(0,1fr)}.grid2,.ai{grid-template-columns:minmax(0,1fr)}.award.top{grid-column:auto}.el{min-height:0}}
 @media(max-width:640px){.bar .wrap{flex-wrap:wrap;gap:0;padding-top:8px}.logo{width:100%;margin-bottom:2px}.tabs{width:100%}.tabs a{padding:8px 10px;font-size:14px}.hero::after{background:linear-gradient(180deg,rgba(10,26,31,.55),rgba(10,26,31,.92) 70%)}.hero{align-items:end}.hero .wrap{grid-template-columns:minmax(0,1fr)}.portrait{order:-1;justify-self:start;width:120px;aspect-ratio:1;border-radius:50%}.legend{display:none}.strip .wrap>div{padding-left:0;border-left:0;border-top:1px solid rgba(127,214,230,.15)}.yr{grid-template-columns:minmax(0,1fr);gap:4px}.yr>h2{position:static;font-size:34px}.news li{grid-template-columns:minmax(0,1fr);gap:2px}.tools input{margin-left:0;max-width:none}}
 @media(prefers-reduced-motion:reduce){.view.on{animation:none}.go a{transition:none}}
 </style>
@@ -266,18 +278,47 @@ footer a{color:#cfe0e5}
 <section class="view" id="v-research">
   <div class="band"><div class="wrap"><h1>Research</h1><p>Making wide-bandgap power electronics survive the radiation of space.</p></div></div>
   <div class="sec"><div class="wrap">
-    <div class="grid2" style="margin-bottom:40px">
+    <div class="grid2 rgrid">
       <div>
         <p style="font-size:19px">Power electronics for satellites, lunar systems and deep-space missions need devices that block thousands of volts efficiently. Wide-bandgap semiconductors do that far better than silicon, but a single heavy ion can make them leak or burn out at a fraction of their rated voltage.</p>
         <p>My research aims to improve the radiation hardness of these devices. I combine ion-strike simulation, electrical and materials characterization and controlled irradiation experiments to find where and why devices fail, and use that to propose radiation-robust designs. I did my Ph.D. with Prof. Ronald D. Schrimpf at Vanderbilt's Institute for Space and Defense Electronics, and continue this work at IU-CREATE.</p>
       </div>
-      <div>
-        <h3>Interests</h3>
-        <ul class="tags">
-          <li>Single-event burnout &amp; leakage</li><li>Total ionizing dose</li><li>Device physics</li><li>Defects &amp; reliability</li><li>Thin films (PLD, ALD, CVD)</li><li>Heterostructures &amp; interfaces</li><li>TCAD &amp; device modeling</li><li>AI for reliability</li>
-        </ul>
-      </div>
+      <figure class="venn" aria-label="Venn diagram: my research sits where materials science, device physics and radiation effects overlap">
+        <svg viewBox="0 0 600 540" role="img">
+          <defs>
+            <radialGradient id="vC" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff4f80" stop-opacity=".9"/><stop offset="1" stop-color="#ff4f80" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g class="vc">
+            <circle cx="222" cy="200" r="158" fill="var(--v1)" stroke="var(--v1s)"/>
+            <circle cx="378" cy="200" r="158" fill="var(--v2)" stroke="var(--v2s)"/>
+            <circle cx="300" cy="335" r="158" fill="var(--v3)" stroke="var(--v3s)"/>
+          </g>
+          <circle cx="300" cy="245" r="46" fill="url(#vC)" opacity=".55"/>
+          <line class="ion" x1="352" y1="18" x2="278" y2="322"/>
+          <text class="vt" x="162" y="120" text-anchor="middle">Materials</text>
+          <text class="vt" x="162" y="146" text-anchor="middle">Science</text>
+          <text class="vs" x="162" y="172" text-anchor="middle">thin films · defects</text>
+          <text class="vt" x="438" y="120" text-anchor="middle">Device</text>
+          <text class="vt" x="438" y="146" text-anchor="middle">Physics</text>
+          <text class="vs" x="438" y="172" text-anchor="middle">power devices · TCAD</text>
+          <text class="vt" x="300" y="440" text-anchor="middle">Radiation Effects</text>
+          <text class="vs" x="300" y="466" text-anchor="middle">heavy ions · SEB · TID</text>
+          <text class="vp" x="300" y="146" text-anchor="middle">Defects &amp;</text>
+          <text class="vp" x="300" y="164" text-anchor="middle">interfaces</text>
+          <text class="vp" x="214" y="306" text-anchor="middle">Radiation</text>
+          <text class="vp" x="214" y="324" text-anchor="middle">damage</text>
+          <text class="vp" x="386" y="306" text-anchor="middle">Single-event</text>
+          <text class="vp" x="386" y="324" text-anchor="middle">effects</text>
+          <text class="vm" x="300" y="236" text-anchor="middle">My</text>
+          <text class="vm" x="300" y="256" text-anchor="middle">research</text>
+        </svg>
+        <figcaption>My research sits where all three meet: <b>radiation-hard wide-bandgap power devices</b>.</figcaption>
+      </figure>
     </div>
+    <h3>Interests</h3>
+    <ul class="tags" style="margin-bottom:44px">
+      <li>Single-event burnout &amp; leakage</li><li>Total ionizing dose</li><li>Device physics</li><li>Defects &amp; reliability</li><li>Thin films (PLD, ALD, CVD)</li><li>Heterostructures &amp; interfaces</li><li>TCAD &amp; device modeling</li><li>AI for reliability</li>
+    </ul>
     <h2>Three materials</h2>
     <div class="els">
       <div class="el"><div class="eg">Silicon carbide (4H)<b>~3.3 eV</b></div><div class="sym">SiC</div><p>Burnout and leakage in diodes and MOSFETs rated 1.2 kV to 10 kV, and physical models that predict their thresholds.</p></div>
