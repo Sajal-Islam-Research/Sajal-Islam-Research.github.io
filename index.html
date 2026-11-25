@@ -167,6 +167,8 @@ details[open]{padding-bottom:12px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(16em,1fr));gap:16px}
 .award{border-radius:14px;padding:20px;border:1px solid var(--rule);background:var(--card)}
 .award.top{background:linear-gradient(140deg,#7a1f45,#0a1a1f);color:#fff;border:0;grid-column:span 2}
+.award .ph{display:block;width:calc(100% + 40px);max-width:none;margin:-20px -20px 14px;aspect-ratio:16/10;object-fit:cover;border-radius:14px 14px 0 0}
+.award .cr{display:block;font-size:12.5px;margin-top:6px;opacity:.8}
 .award .y{font-size:14px;font-weight:600;color:var(--hot)}
 .award.top .y{color:#ffb3c8}
 .award b{display:block;font-family:Fraunces,Georgia,serif;font-size:20px;line-height:1.2;margin:4px 0}
@@ -204,6 +206,7 @@ footer a{color:#cfe0e5}
       <a href="#publications">Publications</a>
       <a href="#talks">Talks</a>
       <a href="#teaching">Teaching</a>
+      <a href="#awards">Awards &amp; Service</a>
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -252,7 +255,7 @@ footer a{color:#cfe0e5}
         </div>
         <div class="go">
           <a href="#talks"><b>Talks</b><span><em id="nTalks"></em> presentations at NSREC, RADECS, DRC, CERN and more</span></a>
-          <a href="#cv"><b>CV</b><span>Experience, teaching, awards and service</span></a>
+          <a href="#awards"><b>Awards &amp; Service</b><span>IEEE NPSS Scholar, 30 peer reviews, leadership</span></a>
         </div>
       </div>
     </div>
@@ -362,8 +365,8 @@ footer a{color:#cfe0e5}
       <li class="hot"><div class="d">2019 – 2021</div><b>Graduate Teaching Assistant, Physics, Astronomy &amp; Materials Science</b><span>Missouri State University · Introductory Physics I and Foundations of Physics I laboratories. Updated the lab manual and recorded video lectures for the full courses when teaching moved online in 2020.</span></li>
       <li><div class="d">2018 – 2019</div><b>GRE Faculty</b><span>Graduate Resources Enhancing Center, Chittagong and Dhaka</span></li>
       <li><div class="d">2017 – 2018</div><b>Instructor, Electrical Engineering</b><span>Shyamoli Ideal Polytechnic Institute, Chittagong · Electrical Circuits 1 &amp; 2, DC Machines 2, AC Machines 2, Installation Planning &amp; Estimating, Communication Engineering, Instrumentation &amp; Process Control. Wrote course plans, lesson plans and exams, and graded answer scripts.</span></li>
-      <li><div class="d">2015</div><b>Director of Science Department and Senior Lecturer</b><span>Ideal A+ Coaching, Dhaka</span></li>
-      <li><div class="d">2014</div><b>Senior Lecturer, Science</b><span>Sara Academy, Dhaka</span></li>
+      <li><div class="d">2015</div><b>Senior Lecturer</b><span>Ideal A+ Coaching, Dhaka</span></li>
+      <li><div class="d">2014</div><b>Senior Lecturer</b><span>Sara Academy, Dhaka</span></li>
       <li><div class="d">2013</div><b>Lecturer</b><span>Promise A+ Coaching, Dhaka</span></li>
     </ul>
     <h2 style="margin-top:40px">Training others in the lab</h2>
@@ -373,7 +376,7 @@ footer a{color:#cfe0e5}
 
 <!-- CV -->
 <section class="view" id="v-cv">
-  <div class="band"><div class="wrap"><h1>Curriculum vitae</h1><p>Experience, education, honors, leadership and service.</p></div></div>
+  <div class="band"><div class="wrap"><h1>Curriculum vitae</h1><p>Experience, education and coursework.</p></div></div>
   <div class="sec"><div class="wrap">
     <div class="grid2">
       <div>
@@ -404,14 +407,27 @@ footer a{color:#cfe0e5}
         <p style="margin-top:18px;font-size:15px">Teaching history is on the <a href="#teaching">Teaching</a> page.</p>
       </div>
     </div>
-    <h2 style="margin-top:40px">Honors &amp; awards</h2>
+    <h2 style="margin-top:48px">Beyond the lab</h2>
+    <div class="beyond">
+      <div><b>Child journalist</b><span>Wrote for "Iccheghuri," the children's section of banglanews24.com, and trained in script writing and camera operation with the Children's Television Foundation of Bangladesh.</span></div>
+      <div><b>Short films</b><span>Made short films shown at film festivals in Bangladesh, including <i>Mukti</i>, <i>The Signs of Old Dhaka</i> and <i>Tiffin</i>.</span></div>
+      <div><b>Writing &amp; puzzles</b><span>A writer in my spare time, and a long-time Rubik's cube solver.</span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- AWARDS & SERVICE -->
+<section class="view" id="v-awards">
+  <div class="band"><div class="wrap"><h1>Awards &amp; service</h1><p>Recognition for research and teaching, and service to the field and the university.</p></div></div>
+  <div class="sec"><div class="wrap">
+    <h2>Honors &amp; awards</h2>
     <div class="cards">
       <div class="award top"><div class="y">2026</div><b>IEEE NPSS Graduate Scholarship Award</b><span>IEEE Nuclear and Plasma Sciences Society, given to a small number of graduate researchers worldwide · <a href="https://www.vanderbilt.edu/vinse/2026/04/02/ims-2026-ph-d-graduate-sajal-islam-wins-ieee-npss-graduate-scholarship-award/">news</a></span></div>
-      <div class="award"><div class="y">2024</div><b>Anchor Award for Research Excellence</b><span>Graduate Student Council, Vanderbilt · <a href="https://news.vanderbilt.edu/2024/06/17/graduate-student-council-announces-2024-anchor-award-winners/">news</a></span></div>
-      <div class="award"><div class="y">2023</div><b>Fan Favorite Poster Award</b><span>VINSE NanoDay, Vanderbilt · <a href="https://my.vanderbilt.edu/vinsenews/2023/12/2023-nanoday-poster-award-winners/">news</a></span></div>
+      <div class="award"><img class="ph" src="images/award-anchor-2024.jpg" alt="Sajal Islam on stage holding his Anchor Award certificate, with his name and Research Excellence on the screen behind him" width="1290" height="1028" loading="lazy" style="aspect-ratio:5/4"><div class="y">2024</div><b>Anchor Award for Research Excellence</b><span>Graduate Student Council, Vanderbilt · <a href="https://news.vanderbilt.edu/2024/06/17/graduate-student-council-announces-2024-anchor-award-winners/">news</a></span><span class="cr">Photo: Vanderbilt University</span></div>
+      <div class="award"><img class="ph" src="images/award-nanoday-2023.jpg" alt="Sajal Islam receiving the Fan Favorite Poster Award certificate on stage at VINSE NanoDay" width="650" height="469" loading="lazy" style="object-position:50% 35%"><div class="y">2023</div><b>Fan Favorite Poster Award</b><span>VINSE NanoDay, Vanderbilt · <a href="https://my.vanderbilt.edu/vinsenews/2023/12/2023-nanoday-poster-award-winners/">news</a></span><span class="cr">Photo: Vanderbilt University</span></div>
       <div class="award"><div class="y">2025</div><b>Certificate of Recognition</b><span>Academic Affairs Chair, Vanderbilt</span></div>
+      <div class="award"><img class="ph" src="images/award-msu-2021.jpg" alt="Sajal Islam holding the 2021 Certified Distance Educator Award, fist-bumping Dr. Robert Mayanovic" width="1200" height="675" loading="lazy" style="object-position:30% 50%"><div class="y">2021</div><b>Certified Distance Educator</b><span>Missouri State University, with Dr. Robert Mayanovic · <a href="https://blogs.missouristate.edu/physics/2021/05/18/making-an-impact-as-an-instructor/">story</a></span><span class="cr">Photo: Missouri State University</span></div>
       <div class="award"><div class="y">2021</div><b>Outstanding Teaching Assistant</b><span>Missouri State University</span></div>
-      <div class="award"><div class="y">2021</div><b>Certified Distance Educator</b><span>Missouri State University</span></div>
     </div>
     <p style="margin-top:16px;color:var(--mute);font-size:15px">Travel grants: CERN (2023); Vanderbilt GLI (2023, 2024, 2025); Vanderbilt GSC (2023, 2024).</p>
     <div class="cols3" style="margin-top:40px">
@@ -440,12 +456,6 @@ footer a{color:#cfe0e5}
           <li>Member, IEEE, IEEE NPSS and IEEE Young Professionals<span>2022 – present</span></li>
         </ul>
       </div>
-    </div>
-    <h2 style="margin-top:48px">Beyond the lab</h2>
-    <div class="beyond">
-      <div><b>Child journalist</b><span>Wrote for "Iccheghuri," the children's section of banglanews24.com, and trained in script writing and camera operation with the Children's Television Foundation of Bangladesh.</span></div>
-      <div><b>Short films</b><span>Made short films shown at film festivals in Bangladesh, including <i>Mukti</i>, <i>The Signs of Old Dhaka</i> and <i>Tiffin</i>.</span></div>
-      <div><b>Writing &amp; puzzles</b><span>A writer in my spare time, and a long-time Rubik's cube solver.</span></div>
     </div>
   </div></div>
 </section>
@@ -561,7 +571,7 @@ document.getElementById("contrib").innerHTML = rows(contrib);
 document.getElementById("venues").innerHTML = [["NSREC","IEEE Nuclear & Space Radiation Effects"],["RADECS","Spain · Belgium · France"],["CERN","G-RADNEXT, Geneva"],["DRC","Device Research Conference"],["NASA","NEPP · Glenn Research Center"],["MRS · APS","Materials and physics meetings"]].map(v => `<span><b>${v[0]}</b>${v[1]}</span>`).join("");
 
 /* router */
-const views = ["home","research","publications","talks","teaching","cv","contact"];
+const views = ["home","research","publications","talks","teaching","awards","cv","contact"];
 const show = () => {
   const h = location.hash.slice(1);
   const v = views.includes(h) ? h : "home";
