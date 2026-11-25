@@ -123,11 +123,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .venn{margin:0;--v1:light-dark(rgba(31,138,158,.20),rgba(127,214,230,.16));--v1s:light-dark(#1f8a9e,#7fd6e6);--v2:light-dark(rgba(75,91,214,.18),rgba(140,153,255,.16));--v2s:light-dark(#4b5bd6,#8c99ff);--v3:light-dark(rgba(255,79,128,.18),rgba(255,111,150,.16));--v3s:light-dark(#d02e5f,#ff6f96)}
 .venn svg{width:100%;height:auto;display:block;overflow:visible}
 .venn .vc circle{stroke-width:2}
-.venn .ion{stroke:var(--hot);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:4 7;opacity:.75}
 .venn text{fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:5px;stroke-linejoin:round}
 .venn .vt{font:600 26px Fraunces,Georgia,serif}
-.venn .vs{font:500 16px Inter,system-ui,sans-serif;fill:var(--mute)}
-.venn .vp{font:600 16px Inter,system-ui,sans-serif}
+.venn .vs{font:500 15px Inter,system-ui,sans-serif;fill:var(--mute)}
+.venn .vr{font:500 15px Inter,system-ui,sans-serif}
+.venn .vk{font-weight:700;fill:var(--v3s)}
 .venn .vm{font:700 19px Inter,system-ui,sans-serif;fill:var(--hot)}
 .venn figcaption{text-align:center;color:var(--mute);font-size:15px;margin-top:6px}
 .venn figcaption b{color:var(--ink)}
@@ -283,7 +283,7 @@ footer a{color:#cfe0e5}
         <p style="font-size:19px">Power electronics for satellites, lunar systems and deep-space missions need devices that block thousands of volts efficiently. Wide-bandgap semiconductors do that far better than silicon, but a single heavy ion can make them leak or burn out at a fraction of their rated voltage.</p>
         <p>My research aims to improve the radiation hardness of these devices. I combine ion-strike simulation, electrical and materials characterization and controlled irradiation experiments to find where and why devices fail, and use that to propose radiation-robust designs. I did my Ph.D. with Prof. Ronald D. Schrimpf at Vanderbilt's Institute for Space and Defense Electronics, and continue this work at IU-CREATE.</p>
       </div>
-      <figure class="venn" aria-label="Venn diagram: my research sits where materials science, device physics and radiation effects overlap">
+      <figure class="venn" aria-label="Venn diagram: my research interest sits where materials science, device physics and radiation effects overlap">
         <svg viewBox="0 0 600 540" role="img">
           <defs>
             <radialGradient id="vC" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff4f80" stop-opacity=".9"/><stop offset="1" stop-color="#ff4f80" stop-opacity="0"/></radialGradient>
@@ -291,28 +291,29 @@ footer a{color:#cfe0e5}
           <g class="vc">
             <circle cx="222" cy="200" r="158" fill="var(--v1)" stroke="var(--v1s)"/>
             <circle cx="378" cy="200" r="158" fill="var(--v2)" stroke="var(--v2s)"/>
-            <circle cx="300" cy="335" r="158" fill="var(--v3)" stroke="var(--v3s)"/>
+            <circle cx="300" cy="345" r="170" fill="var(--v3)" stroke="var(--v3s)"/>
           </g>
-          <circle cx="300" cy="245" r="46" fill="url(#vC)" opacity=".55"/>
-          <line class="ion" x1="352" y1="18" x2="278" y2="322"/>
-          <text class="vt" x="162" y="120" text-anchor="middle">Materials</text>
-          <text class="vt" x="162" y="146" text-anchor="middle">Science</text>
-          <text class="vs" x="162" y="172" text-anchor="middle">thin films · defects</text>
-          <text class="vt" x="438" y="120" text-anchor="middle">Device</text>
-          <text class="vt" x="438" y="146" text-anchor="middle">Physics</text>
-          <text class="vs" x="438" y="172" text-anchor="middle">power devices · TCAD</text>
-          <text class="vt" x="300" y="440" text-anchor="middle">Radiation Effects</text>
-          <text class="vs" x="300" y="466" text-anchor="middle">heavy ions · SEB · TID</text>
-          <text class="vp" x="300" y="146" text-anchor="middle">Defects &amp;</text>
-          <text class="vp" x="300" y="164" text-anchor="middle">interfaces</text>
-          <text class="vp" x="214" y="306" text-anchor="middle">Radiation</text>
-          <text class="vp" x="214" y="324" text-anchor="middle">damage</text>
-          <text class="vp" x="386" y="306" text-anchor="middle">Single-event</text>
-          <text class="vp" x="386" y="324" text-anchor="middle">effects</text>
-          <text class="vm" x="300" y="236" text-anchor="middle">My</text>
-          <text class="vm" x="300" y="256" text-anchor="middle">research</text>
+          <circle cx="300" cy="250" r="50" fill="url(#vC)" opacity=".5"/>
+          <text class="vt" x="170" y="98" text-anchor="middle">Materials</text>
+          <text class="vt" x="170" y="124" text-anchor="middle">Science</text>
+          <text class="vs" x="150" y="152" text-anchor="middle">thin films</text>
+          <text class="vs" x="143" y="173" text-anchor="middle">advanced materials</text>
+          <text class="vs" x="142" y="194" text-anchor="middle">characterization</text>
+          <text class="vs" x="142" y="215" text-anchor="middle">&amp; analysis</text>
+          <text class="vt" x="430" y="98" text-anchor="middle">Device</text>
+          <text class="vt" x="430" y="124" text-anchor="middle">Physics</text>
+          <text class="vs" x="450" y="152" text-anchor="middle">devices · TCAD</text>
+          <text class="vs" x="455" y="173" text-anchor="middle">structural</text>
+          <text class="vs" x="455" y="194" text-anchor="middle">development</text>
+          <text class="vt" x="300" y="380" text-anchor="middle">Radiation Effects</text>
+          <text class="vr" x="300" y="408" text-anchor="middle"><tspan class="vk">Non-destructive</tspan> SET · SEU · SEFI</text>
+          <text class="vr" x="300" y="431" text-anchor="middle"><tspan class="vk">Destructive</tspan> SEL · SELC · SEB · SEGR</text>
+          <text class="vr" x="300" y="454" text-anchor="middle"><tspan class="vk">Cumulative</tspan> DD · TID</text>
+          <text class="vm" x="300" y="232" text-anchor="middle">My</text>
+          <text class="vm" x="300" y="253" text-anchor="middle">research</text>
+          <text class="vm" x="300" y="274" text-anchor="middle">interest</text>
         </svg>
-        <figcaption>My research sits where all three meet: <b>radiation-hard wide-bandgap power devices</b>.</figcaption>
+        <figcaption>My research interest sits where all three meet: <b>radiation-hard wide-bandgap power devices</b>.</figcaption>
       </figure>
     </div>
     <h3>Interests</h3>
