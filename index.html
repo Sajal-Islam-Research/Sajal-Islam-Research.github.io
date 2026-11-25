@@ -129,7 +129,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .venn .vs{font-size:15px;font-weight:500;fill:var(--mute)}
 .venn .vk{font-size:14px;font-weight:700;fill:var(--v3s)}
 .venn .vr{font-size:14px;font-weight:500;fill:var(--ink)}
-.venn .pill{fill:var(--ion);filter:drop-shadow(0 4px 10px rgba(255,79,128,.35))}
 .venn .vm{font-size:16px;font-weight:700;fill:#fff}
 .venn figcaption{text-align:center;color:var(--mute);font-size:15px;margin-top:6px}
 .venn figcaption b{color:var(--ink)}
@@ -285,38 +284,36 @@ footer a{color:#cfe0e5}
         <p style="font-size:19px">Power electronics for satellites, lunar systems and deep-space missions need devices that block thousands of volts efficiently. Wide-bandgap semiconductors do that far better than silicon, but a single heavy ion can make them leak or burn out at a fraction of their rated voltage.</p>
         <p>My research aims to improve the radiation hardness of these devices. I combine ion-strike simulation, electrical and materials characterization and controlled irradiation experiments to find where and why devices fail, and use that to propose radiation-robust designs. I did my Ph.D. with Prof. Ronald D. Schrimpf at Vanderbilt's Institute for Space and Defense Electronics, and continue this work at IU-CREATE.</p>
       </div>
-      <figure class="venn" aria-label="Venn diagram: my research interest sits where materials science, device physics and radiation effects overlap">
-        <svg viewBox="0 0 600 575" role="img">
-          <g class="vc">
-            <circle cx="210" cy="210" r="170" fill="var(--v1)" stroke="var(--v1s)"/>
-            <circle cx="390" cy="210" r="170" fill="var(--v2)" stroke="var(--v2s)"/>
-            <circle cx="300" cy="390" r="175" fill="var(--v3)" stroke="var(--v3s)"/>
+      <figure class="venn" aria-label="Atom diagram: my research interest is the nucleus, with materials science, device physics and radiation effects as orbits around it">
+        <svg viewBox="0 0 600 600" role="img" id="atom">
+          <defs>
+            <radialGradient id="gN" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#ff8fb0"/><stop offset="1" stop-color="#d02e5f"/></radialGradient>
+            <path id="orb" d="M110 300a190 66 0 1 0 380 0a190 66 0 1 0 -380 0"/>
+          </defs>
+          <g fill="none" stroke-width="2.5">
+            <g transform="rotate(60 300 300)"><use href="#orb" stroke="var(--v1s)"/><circle r="9" fill="var(--v1s)"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#orb"/></animateMotion></circle></g>
+            <g transform="rotate(-60 300 300)"><use href="#orb" stroke="var(--v2s)"/><circle r="9" fill="var(--v2s)"><animateMotion dur="9s" repeatCount="indefinite" begin="-3s"><mpath href="#orb"/></animateMotion></circle></g>
+            <g><use href="#orb" stroke="var(--v3s)"/><circle r="9" fill="var(--v3s)"><animateMotion dur="8s" repeatCount="indefinite" begin="-5s"><mpath href="#orb"/></animateMotion></circle></g>
           </g>
-          <g class="blk" text-anchor="middle">
-            <text class="vt t1" x="130" y="130">Materials</text>
-            <text class="vt t1" x="130" y="154">Science</text>
-            <text class="vs" x="130" y="182">Thin films</text>
-            <text class="vs" x="130" y="201">Advanced materials</text>
-            <text class="vs" x="130" y="220">characterization</text>
-            <text class="vs" x="130" y="239">&amp; analysis</text>
-            <text class="vt t2" x="470" y="130">Device</text>
-            <text class="vt t2" x="470" y="154">Physics</text>
-            <text class="vs" x="470" y="182">Devices</text>
-            <text class="vs" x="470" y="201">TCAD</text>
-            <text class="vs" x="470" y="220">Structural</text>
-            <text class="vs" x="470" y="239">development</text>
-            <text class="vt t3" x="300" y="414">Radiation Effects</text>
+          <circle cx="300" cy="300" r="70" fill="url(#gN)" style="filter:drop-shadow(0 8px 20px rgba(255,79,128,.45))"/>
+          <text class="vm" x="300" y="294" text-anchor="middle">My research</text>
+          <text class="vm" x="300" y="315" text-anchor="middle">interest</text>
+          <g text-anchor="middle">
+            <text class="vt t1" x="100" y="40">Materials Science</text>
+            <text class="vs" x="100" y="64">Thin films</text>
+            <text class="vs" x="100" y="83">Advanced materials</text>
+            <text class="vs" x="100" y="102">characterization &amp; analysis</text>
+            <text class="vt t2" x="500" y="40">Device Physics</text>
+            <text class="vs" x="500" y="64">Devices</text>
+            <text class="vs" x="500" y="83">TCAD</text>
+            <text class="vs" x="500" y="102">Structural development</text>
+            <text class="vt t3" x="300" y="508">Radiation Effects</text>
           </g>
-          <g class="rows">
-            <text class="vk" x="262" y="444" text-anchor="end">Non-destructive</text><text class="vr" x="274" y="444">SET · SEU · SEFI</text>
-            <text class="vk" x="262" y="466" text-anchor="end">Destructive</text><text class="vr" x="274" y="466">SEL · SELC · SEB · SEGR</text>
-            <text class="vk" x="262" y="488" text-anchor="end">Cumulative</text><text class="vr" x="274" y="488">DD · TID</text>
-          </g>
-          <rect class="pill" x="236" y="236" width="128" height="58" rx="29"/>
-          <text class="vm" x="300" y="260" text-anchor="middle">My research</text>
-          <text class="vm" x="300" y="281" text-anchor="middle">interest</text>
+          <text class="vk" x="262" y="538" text-anchor="end">Non-destructive</text><text class="vr" x="274" y="538">SET · SEU · SEFI</text>
+          <text class="vk" x="262" y="560" text-anchor="end">Destructive</text><text class="vr" x="274" y="560">SEL · SELC · SEB · SEGR</text>
+          <text class="vk" x="262" y="582" text-anchor="end">Cumulative</text><text class="vr" x="274" y="582">DD · TID</text>
         </svg>
-        <figcaption>My research interest sits where all three meet: <b>radiation-hard wide-bandgap power devices</b>.</figcaption>
+        <figcaption>My research interest is the core that all three revolve around: <b>radiation-hard wide-bandgap power devices</b>.</figcaption>
       </figure>
     </div>
     <h3>Interests</h3>
@@ -673,6 +670,7 @@ const frame = t => {
 const loop = t => { if (!running) { raf = 0; return; } frame(t); raf = requestAnimationFrame(loop); };
 const start = () => { if (still) { frame(0); return; } if (!raf) raf = requestAnimationFrame(loop); };
 document.addEventListener("visibilitychange", () => { if (document.hidden) running = false; else show(); });
+if (still) { const at = document.getElementById("atom"); if (at && at.pauseAnimations) at.pauseAnimations(); }
 window.addEventListener("hashchange", show);
 show();
 }
